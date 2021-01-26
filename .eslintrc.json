@@ -5,30 +5,12 @@
         "node": true
     },
     "extends": [
-        "eslint:recommended"
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module",
-        "ecmaVersion": 12
-    },
-    "rules": {
-        "key-spacing": [
-            1,
-            {
-                "beforeColon": false,
-                "afterColon": true
-            }
-        ],
-        "no-alert": 2,
-        "no-var": 2,
-        "eqeqeq": 2,
-        "curly": [
-            2,
-            "all"
-        ],
-        "semi": [
-            0,
-            "always"
-        ]
+        "ecmaVersion": 2018
     }
 }
