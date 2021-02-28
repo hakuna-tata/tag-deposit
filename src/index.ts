@@ -1,2 +1,8 @@
-const sdk = "1";
-console.log(sdk);
+import Track from "./Track";
+
+export function entry(): Track {
+    const track: Track = new Track();
+    return track;
+}
+
+entry();
