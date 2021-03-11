@@ -1,8 +1,18 @@
 import Track from "./Track";
 
-export function entry(): Track {
-    const track: Track = new Track();
-    return track;
+class TD {
+    static isInit = true;
+
+    static init(): Track {
+        debugger;
+        const track: Track = new Track();
+        if (TD.isInit !== false) {
+            track.collect.bind(track);
+        }
+        TD.isInit = false;
+
+        return track;
+    }
 }
 
-entry();
+export default TD.init();

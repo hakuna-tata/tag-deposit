@@ -1,6 +1,16 @@
+interface PageInfo {
+    groupid: string;
+    appid: string;
+    pageid: string;
+    timestamp: number;
+    others: Record<string, string>;
+}
+
 class Track {
-    report(): void {
-        console.log("report");
+    private pageList: PageInfo[] = [];
+
+    collect(): void {
+        this.pageList = [];
     }
 }
 
