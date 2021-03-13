@@ -1,16 +1,8 @@
-interface PageInfo {
-    groupid: string;
-    appid: string;
-    pageid: string;
-    timestamp: number;
-    others: Record<string, string>;
-}
+import Page from "./page";
 
 class Track {
-    private pageList: PageInfo[] = [];
-
     collect(): void {
-        this.pageList = [];
+        new Page().init();
     }
 }
 

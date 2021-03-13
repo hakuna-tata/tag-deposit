@@ -1,17 +1,14 @@
-import Track from "./Track";
+import Track from "./track";
 
 class TD {
     static isInit = true;
 
-    static init(): Track {
-        debugger;
+    static init(): void {
         const track: Track = new Track();
         if (TD.isInit !== false) {
-            track.collect.bind(track);
+            track.collect.call(track);
         }
         TD.isInit = false;
-
-        return track;
     }
 }
 
