@@ -1,6 +1,6 @@
 import { ISubscriberDep } from "../subTypes";
 
-export default class Click extends ISubscriberDep {
+export default class Customize extends ISubscriberDep {
     init(): void {
         this.subscribe();
         this.publish();
@@ -9,7 +9,7 @@ export default class Click extends ISubscriberDep {
         this.on("report", (e: Event) => {});
     }
     publish(): void {
-        document.body.addEventListener("click", (e: Event) => {
+        document.body.addEventListener("Customize", (e: Event) => {
             this.emit("report", e);
         });
     }
