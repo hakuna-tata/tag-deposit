@@ -13,8 +13,7 @@ class Page {
     private pageInfo: PageInfo[] = [];
 
     init(): void {
-        this.groupid =
-            document.querySelector("[td-groupid]") && document.querySelector("[td-groupid]").getAttribute("td-groupid");
+        this.groupid = document.body.getAttribute("td-groupid");
 
         const nodes: NodeList = document.querySelectorAll("[td-proid]");
 

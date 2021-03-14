@@ -6,7 +6,7 @@ class TD {
     static init(): void {
         const track: Track = new Track();
         if (TD.isInit !== false) {
-            track.collect.call(track);
+            track.init.call(track);
         }
         TD.isInit = false;
     }

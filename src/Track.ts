@@ -1,7 +1,7 @@
 import Page from "./page";
 
 class Track {
-    collect(): void {
+    init(): void {
         new Page().init();
     }
 }
