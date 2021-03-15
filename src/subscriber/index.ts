@@ -1,7 +1,8 @@
+import { BaseSubscriberDep } from "./subTypes";
 import Click from "./Deps/click";
 import Customize from "./Deps/customize";
 
-type DepsMap = { [K: string]: any };
+type DepsMap = { [K: string]: typeof BaseSubscriberDep };
 
 const DEP_MAP: DepsMap = {
     click: Click,
