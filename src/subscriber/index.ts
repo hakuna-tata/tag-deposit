@@ -17,7 +17,9 @@ export default class Subscriber {
             const dep = new Dep();
 
             dep.on("report", (e: Event) => {
-                console.log(e.composedPath());
+                if (e.composedPath) {
+                    e["td-path"] = e.composedPath();
+                }
             });
 
             dep.publish();

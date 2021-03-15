@@ -12,13 +12,16 @@
     </style>
 </head>
 <body td-groupid="front-end">
-    <div id="root" style="height: 100%;">
-        <div td-proid="pro-1" td-pageid="page-1">
-            <div></div>
-            <div td-proid="pro-1" td-pageid="page-2"></div>
+    <div td-proid="pro-1" id="root" style="height: 100%;">
+        <div td-pageid="page-1" style="height: 50px; display: flex; justify-content: space-around; align-items: center;">
+            <div style="width: 100px; height: 100%; background-color:brown;">
+                <div td-proid="pro-2" td-pageid="page-1"></div>
+            </div>
+            <div td-pageid="page-2" style="width: 100px; height: 100%; background-color: blueviolet;"></div>
         </div>
-        <div td-proid="pro-1" td-pageid="page-3"></div>
+        <div td-pageid="page-3" style="height: 100px; background-color: chartreuse; margin-top: 30px"></div>
     </div>
+    <iframe td-proid="pro-3" td-pageid="page-1"></iframe>
     <script src="index.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ class Page {
     init(): void {
         this.groupid = document.body.getAttribute("td-groupid");
 
-        const nodes: NodeList = document.querySelectorAll("[td-proid]");
+        const nodes: NodeList = document.querySelectorAll("[td-pageid]");
 
         this.pathname = `${window.location.origin}${window.location.pathname}`;
 
@@ -39,6 +39,12 @@ class Page {
         };
         this.pageInfo.push(pi);
     }
+
+    get pageNum(): number {
+        return this.pageInfo.length;
+    }
+
+    getPage(): void {}
 }
 
-export default Page;
+export default new Page();
