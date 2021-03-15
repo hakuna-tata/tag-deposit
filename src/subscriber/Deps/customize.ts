@@ -1,13 +1,6 @@
-import { ISubscriberDep } from "../subTypes";
+import { BaseSubscriberDep } from "../subTypes";
 
-export default class Customize extends ISubscriberDep {
-    init(): void {
-        this.subscribe();
-        this.publish();
-    }
-    subscribe(): void {
-        this.on("report", (e: Event) => {});
-    }
+export default class Customize extends BaseSubscriberDep {
     publish(): void {
         document.body.addEventListener("Customize", (e: Event) => {
             this.emit("report", e);
