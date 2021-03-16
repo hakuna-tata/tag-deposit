@@ -1,3 +1,4 @@
+import { Logger } from "./logger";
 interface PageInfo {
     groupid: string;
     proid: string;
@@ -20,15 +21,34 @@ class Page {
         this.pathname = `${window.location.origin}${window.location.pathname}`;
 
         nodes.forEach((node: Element): void => {
+            const pageid: string = node.getAttribute("td-pageid");
             this.addPageInfo({
-                proid: node.getAttribute("td-proid"),
-                pageid: node.getAttribute("td-pageid") || this.pathname,
+                proid: this.getProId(node),
+                pageid: pageid || this.pathname,
                 node,
             });
         });
     }
 
+    getProId(elm: Element): string {
+        let res = "";
+        while (elm.tagName !== "HTML") {
+            if (elm.getAttribute("td-proid")) {
+                res = elm.getAttribute("td-proid");
+                break;
+            }
+            (elm as ParentNode) = elm.parentNode;
+        }
+
+        return res;
+    }
+
     addPageInfo({ proid, pageid, node }: { proid: string; pageid: string; node: Element }): void {
+        if (proid === "") {
+            Logger.warn(`warn => td-pageid: ${pageid} 没有对应的 td-proid`);
+            return;
+        }
+
         const pi: PageInfo = {
             groupid: this.groupid,
             proid,

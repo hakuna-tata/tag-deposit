@@ -16,7 +16,7 @@ class Track {
     }
 
     autoExpose(): void {
-        Logger(`自动曝光的 page 数：${Page.pageNum}`);
+        Logger.color(`自动曝光的 page 数：${Page.pageNum}`);
     }
 }
 
