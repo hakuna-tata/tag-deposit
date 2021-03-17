@@ -1,4 +1,5 @@
 import { BaseSubscriberDep } from "./subTypes";
+import { Pipeline } from "../pipeline/piplelineTypes";
 import Click from "./Deps/click";
 import Customize from "./Deps/customize";
 import Expose from "./Deps/expose";
@@ -11,7 +12,7 @@ const DEP_MAP: DepsMap = {
     expose: Expose,
 };
 
-export default class Subscriber {
+export default class Subscriber extends Pipeline<Event> {
     private Deps: DepsMap = {};
 
     subscribe(): void {
@@ -22,11 +23,17 @@ export default class Subscriber {
                 if (e.composedPath) {
                     e["td-path"] = e.composedPath();
                 }
+                // 这里捕获事件上报
+                this.report(e);
             });
 
             dep.publish();
 
             this.Deps[key] = Dep;
         });
+    }
+
+    execute(e: Event): Event {
+        return e;
     }
 }
