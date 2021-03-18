@@ -23,8 +23,8 @@ export default class Subscriber extends Pipeline<Event> {
                 if (e.composedPath) {
                     e["td-path"] = e.composedPath();
                 }
-                // 这里捕获事件上报
-                this.report(e);
+                // 触发流水线
+                this.trigger(e);
             });
 
             dep.publish();
@@ -33,7 +33,7 @@ export default class Subscriber extends Pipeline<Event> {
         });
     }
 
-    execute(e: Event): Event {
+    step(e: Event): Event {
         return e;
     }
 }
