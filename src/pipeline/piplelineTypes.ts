@@ -13,7 +13,6 @@ export abstract class Pipeline<T> implements IPipeline {
     }
 
     trigger(input: T): void {
-        debugger;
         const output = this.step(input);
 
         // 中断流水线
