@@ -1,7 +1,8 @@
 export interface ActionItem {
     el?: Element;
     group_id?: string;
-    pro_id?: string;
+    page_id?: string;
+    app_id?: string;
     module_id?: string;
     item_id?: string;
 }

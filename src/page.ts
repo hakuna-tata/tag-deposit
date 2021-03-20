@@ -1,7 +1,7 @@
 import { Logger } from "./logger";
 interface PageInfo {
     groupid: string;
-    proid: string;
+    appid: string;
     pageid: string;
     node: Element;
     timestamp: number;
@@ -23,18 +23,18 @@ class Page {
         nodes.forEach((node: Element): void => {
             const pageid: string = node.getAttribute("td-pageid");
             this.addPageInfo({
-                proid: this.getProId(node),
+                appid: this.getAppId(node),
                 pageid: pageid || this.pathname,
                 node,
             });
         });
     }
 
-    getProId(elm: Element): string {
+    getAppId(elm: Element): string {
         let res = "";
         while (elm.tagName !== "HTML") {
-            if (elm.getAttribute("td-proid")) {
-                res = elm.getAttribute("td-proid");
+            if (elm.getAttribute("td-appid")) {
+                res = elm.getAttribute("td-appid");
                 break;
             }
             (elm as ParentNode) = elm.parentNode;
@@ -43,15 +43,15 @@ class Page {
         return res;
     }
 
-    addPageInfo({ proid, pageid, node }: { proid: string; pageid: string; node: Element }): void {
-        if (proid === "") {
-            Logger.warn(`warn => td-pageid: ${pageid} 没有对应的 td-proid`);
+    addPageInfo({ appid, pageid, node }: { appid: string; pageid: string; node: Element }): void {
+        if (appid === "") {
+            Logger.warn(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
             return;
         }
 
         const pi: PageInfo = {
             groupid: this.groupid,
-            proid,
+            appid,
             pageid,
             node,
             timestamp: Date.now(),
