@@ -11,7 +11,7 @@ export default class Expose extends EventCompose {
 
         if (reportItem.level === ACTION_LEVEL.PAGE) {
         }
-
+        console.log(reportItem);
         return reportItem;
     }
 }
