@@ -1,5 +1,5 @@
 import { Logger } from "./logger";
-import Page from "./page";
+import pageInstance from "./page";
 import Subscriber from "./subscriber";
 import FormatData from "./pipeline/formatData";
 import BrowserDebug from "./pipeline/browserDebug";
@@ -10,7 +10,7 @@ class Track {
     private browserDebug: BrowserDebug;
 
     init(): void {
-        Page.init();
+        pageInstance.init();
 
         this.subscriber = new Subscriber();
         this.formatData = new FormatData();
@@ -19,12 +19,6 @@ class Track {
         this.subscriber.pipe(this.formatData).pipe(this.browserDebug);
 
         this.subscriber.subscribe();
-
-        this.autoExpose();
-    }
-
-    autoExpose(): void {
-        Logger.color(`自动曝光的 page 数：${Page.pageNum}`);
     }
 }
 

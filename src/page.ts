@@ -60,6 +60,10 @@ class Page {
         this.pageInfo.push(pi);
     }
 
+    get groupId(): string {
+        return this.groupid;
+    }
+
     get pageNum(): number {
         return this.pageInfo.length;
     }
