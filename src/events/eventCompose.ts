@@ -124,16 +124,16 @@ export default class EventCompose {
 
             // module 维度
         } else if (pageNodePath.length === 2) {
-            reportItem.page_id = pageNodePath[0].attrs.pageid;
-            reportItem.module_id = pageNodePath[1].attrs.moduleid;
+            reportItem.page_id = pageNodePath[1].attrs.pageid;
+            reportItem.module_id = pageNodePath[0].attrs.moduleid;
 
             reportItem.level = ACTION_LEVEL.MODULE;
 
             // item 维度
         } else if (pageNodePath.length === 3) {
-            reportItem.page_id = pageNodePath[0].attrs.pageid;
+            reportItem.page_id = pageNodePath[2].attrs.pageid;
             reportItem.module_id = pageNodePath[1].attrs.moduleid;
-            reportItem.item_id = pageNodePath[2].attrs.itemid;
+            reportItem.item_id = pageNodePath[0].attrs.itemid;
 
             reportItem.level = ACTION_LEVEL.ITEM;
         }
