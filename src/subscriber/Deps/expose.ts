@@ -1,6 +1,6 @@
 import { BaseSubscriberDep } from "../subTypes";
 
-const OBSEVER_QUERY = ["[td-pageid]", "[td-itemid]", "[td-expose][td-moduleid]"];
+const OBSEVER_QUERY = ["[td-pageid]", "[td-itemid]", "[td-expose='1'][td-moduleid]"];
 
 const THRESHOLD = 0.5;
 export default class Expose extends BaseSubscriberDep {
@@ -39,8 +39,8 @@ export default class Expose extends BaseSubscriberDep {
         query.forEach((attr) => {
             document.querySelectorAll(attr).forEach((el) => {
                 if (!this.observerList.includes(el)) {
-                    this.intersectionObserver.observe(el);
                     this.observerList.push(el);
+                    this.intersectionObserver.observe(el);
                 }
             });
         });
