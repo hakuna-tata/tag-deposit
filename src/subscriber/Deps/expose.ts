@@ -14,6 +14,15 @@ export default class Expose extends BaseSubscriberDep {
         this.intersectionObserver = new IntersectionObserver(this.ioHandler.bind(this), {
             threshold: THRESHOLD,
         });
+
+        window.requestAnimationFrame(() => {
+            this.mutationObserver = new MutationObserver(this.moHandler.bind(this));
+
+            this.mutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+        });
     }
 
     private ioHandler(entries: IntersectionObserverEntry[]): void {
@@ -25,6 +34,11 @@ export default class Expose extends BaseSubscriberDep {
                 this.dispatchExpose(io.target);
             }
         });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    private moHandler(MutationRecord: MutationRecord[]): void {
+        this.addObserver(OBSEVER_QUERY);
     }
 
     private dispatchExpose(target: Element): void {
