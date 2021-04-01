@@ -1,4 +1,4 @@
-import { ReportItem } from "../monitorTypes";
+import { ReportItem, ACT_ID } from "../monitorTypes";
 import EventCompose, { ACTION_LEVEL } from "./eventCompose";
 
 export default class Expose extends EventCompose {
@@ -9,8 +9,7 @@ export default class Expose extends EventCompose {
 
         if (reportItem.level === ACTION_LEVEL.UNKNOW) return null;
 
-        if (reportItem.level === ACTION_LEVEL.PAGE) {
-        }
+        reportItem.type = ACT_ID.EXPOSE;
         console.log(reportItem);
         return reportItem;
     }

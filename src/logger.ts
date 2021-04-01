@@ -1,5 +1,5 @@
 export const Logger = {
-    color: (str: string): void => {
+    tips: (str: string): void => {
         console.log(`%c ${str}`, "color: #c09");
     },
     warn: (str: string, el?: Element): void => {

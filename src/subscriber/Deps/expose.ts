@@ -1,9 +1,13 @@
 import { BaseSubscriberDep } from "../subTypes";
+import { Logger } from "../../logger";
 
 const OBSEVER_QUERY = ["[td-pageid]", "[td-itemid]", "[td-expose='1'][td-moduleid]"];
 
+const MIN_TIME = 1000;
 const THRESHOLD = 0.5;
 export default class Expose extends BaseSubscriberDep {
+    private updateTime = 0;
+
     private intersectionObserver: IntersectionObserver;
     private mutationObserver: MutationObserver;
     private observerList: Element[] = [];
@@ -30,6 +34,7 @@ export default class Expose extends BaseSubscriberDep {
             const rootHeight = io.rootBounds ? io.rootBounds.height : document.documentElement.offsetHeight;
             const visbleHeight = io.intersectionRect.height;
 
+            // 元素的一半以上在视口内；或者元素的可视高度超过视口的一半以上
             if (io.isIntersecting || visbleHeight / rootHeight >= THRESHOLD) {
                 this.dispatchExpose(io.target);
             }
@@ -50,6 +55,14 @@ export default class Expose extends BaseSubscriberDep {
     }
 
     private addObserver(query: string[]): void {
+        const now = Date.now();
+        if (now - this.updateTime < MIN_TIME) {
+            Logger.tips("tips：限制曝光元素收集频率");
+            return;
+        }
+
+        this.updateTime = now;
+
         query.forEach((attr) => {
             document.querySelectorAll(attr).forEach((el) => {
                 if (!this.observerList.includes(el)) {

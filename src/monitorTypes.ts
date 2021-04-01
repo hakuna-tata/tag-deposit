@@ -1,5 +1,6 @@
 export interface ReportItem {
     level: number;
+    type: number;
     appEl?: Element;
     targetEl?: EventTarget;
     group_id?: string;
@@ -15,4 +16,12 @@ export enum ACT_TYPE {
     PAGE = 2, // 页面
     MODULE = 3, // 模块
     ITEM = 4, // 模块子内容
+}
+
+export enum ACT_ID {
+    UNKNOW = 0,
+    CLICK = 100, // 点击
+    EXPOSE = 101, // 曝光
+    STAY = 102, // 停留
+    CUSTOMIZE = 103, // 自定义
 }
