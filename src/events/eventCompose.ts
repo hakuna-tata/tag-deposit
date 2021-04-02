@@ -1,5 +1,5 @@
 import pageInstance from "../page";
-import { ReportItem, ACT_ID } from "../monitorTypes";
+import { ReportItem } from "../monitorTypes";
 
 interface TdNodePath {
     el: Element;
@@ -100,7 +100,7 @@ export default class EventCompose {
     private nodePathAction(tdNodePath: TdNodePath[]): ReportItem {
         const reportItem: ReportItem = {
             level: ACTION_LEVEL.UNKNOW,
-            type: ACT_ID.UNKNOW,
+            type: "",
             appEl: null,
             targetEl: null,
             group_id: pageInstance.groupId,

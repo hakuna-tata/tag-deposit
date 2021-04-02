@@ -1,6 +1,6 @@
 export interface ReportItem {
     level: number;
-    type: number;
+    type: string;
     appEl?: Element;
     targetEl?: EventTarget;
     group_id?: string;
@@ -19,9 +19,8 @@ export enum ACT_TYPE {
 }
 
 export enum ACT_ID {
-    UNKNOW = 0,
-    CLICK = 100, // 点击
-    EXPOSE = 101, // 曝光
-    STAY = 102, // 停留
-    CUSTOMIZE = 103, // 自定义
+    CLICK = "click", // 点击
+    EXPOSE = "expose", // 曝光
+    STAY = "stay", // 停留
+    CUSTOMIZE = "customize", // 自定义
 }

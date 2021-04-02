@@ -1,4 +1,3 @@
-import { Logger } from "./logger";
 import pageInstance from "./page";
 import Subscriber from "./subscriber";
 import FormatData from "./pipeline/formatData";
@@ -17,7 +16,6 @@ class Track {
         this.browserDebug = new BrowserDebug();
 
         this.subscriber.pipe(this.formatData).pipe(this.browserDebug);
-
         this.subscriber.subscribe();
     }
 }

@@ -10,7 +10,7 @@ export default class Expose extends EventCompose {
         if (reportItem.level === ACTION_LEVEL.UNKNOW) return null;
 
         reportItem.type = ACT_ID.EXPOSE;
-        console.log(reportItem);
+
         return reportItem;
     }
 }

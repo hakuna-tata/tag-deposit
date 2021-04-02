@@ -7,8 +7,9 @@ export default class Click extends EventCompose {
 
         // 只有 item 支持点击行为
         if (reportItem.level !== ACTION_LEVEL.ITEM) return null;
+
         reportItem.type = ACT_ID.CLICK;
-        console.log(reportItem);
+
         return reportItem;
     }
 }

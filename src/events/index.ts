@@ -19,7 +19,7 @@ const getEventInstance = (e: Event): EventCompose => {
     return null;
 };
 
-export default function formatData(e: Event): void {
+export default function formatData(e: Event): ReportItem {
     const eCompose: EventCompose = getEventInstance(e);
 
     if (eCompose === null) return null;
@@ -27,4 +27,6 @@ export default function formatData(e: Event): void {
     const reportItem: ReportItem = (eCompose as EventType).compose();
 
     if (reportItem === null) return null;
+
+    return reportItem;
 }

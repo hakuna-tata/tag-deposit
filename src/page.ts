@@ -45,7 +45,7 @@ class Page {
 
     addPageInfo({ appid, pageid, node }: { appid: string; pageid: string; node: Element }): void {
         if (appid === "") {
-            Logger.warn(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
+            Logger.tips(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
             return;
         }
 
