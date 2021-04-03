@@ -36,6 +36,12 @@ export default class Stay extends BaseSubscriberDep {
                 return pi.id;
             });
 
+            Object.keys(this.stayCache).forEach((id) => {
+                if (!ids.includes(id)) {
+                    this.stayCache[id] = null;
+                }
+            });
+
             this.calcStay();
         }, REPORT_STAY_INTERVAL);
     }
