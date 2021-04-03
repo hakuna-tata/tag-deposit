@@ -45,7 +45,7 @@ export default class Stay extends BaseSubscriberDep {
                 }
             });
 
-            // this.calcStay();
+            this.calcStay();
         }, REPORT_STAY_INTERVAL);
     }
 
