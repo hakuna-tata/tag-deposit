@@ -2,12 +2,11 @@ import { BaseSubscriberDep } from "../subTypes";
 import config from "../../config";
 import pageInstance, { PageInfo } from "../../page";
 import { Logger } from "../../logger";
-import page from "../../page";
 
 const REPORT_STAY_INTERVAL = 1000;
 const DEFAULT_MAX_INTERVAL = 10 * 1000;
 
-interface ReportCacheItem {
+interface StayCacheItem {
     count: number;
     time: number;
 }
@@ -15,7 +14,7 @@ interface ReportCacheItem {
 export default class Stay extends BaseSubscriberDep {
     private startTime = 0;
 
-    private reportCache: Record<string, ReportCacheItem> = {};
+    private stayCache: Record<string, StayCacheItem> = {};
 
     publish(): void {
         this.startTime = Date.now();
@@ -33,16 +32,16 @@ export default class Stay extends BaseSubscriberDep {
         setTimeout(() => {
             const pages = pageInstance.getVisiblePages();
 
-            Logger.debug("stayPage", pages);
+            Logger.debug("页面停留检测的 pages", pages);
             const ids = pages.map((pi: PageInfo): string => {
                 this.report(pi);
 
                 return pi.id;
             });
 
-            Object.keys(this.reportCache).forEach((id) => {
+            Object.keys(this.stayCache).forEach((id) => {
                 if (!ids.includes(id)) {
-                    this.reportCache[id] = null;
+                    this.stayCache[id] = null;
                 }
             });
 
@@ -51,21 +50,21 @@ export default class Stay extends BaseSubscriberDep {
     }
 
     private report(pi: PageInfo): void {
-        const reportItem: ReportCacheItem = {
+        const stayItem: StayCacheItem = {
             count: 0,
             time: 0,
-            ...this.reportCache[pi.id],
+            ...this.stayCache[pi.id],
         };
 
         const now = Date.now();
 
-        if (now - reportItem.time < DEFAULT_MAX_INTERVAL) return;
+        if (now - stayItem.time < DEFAULT_MAX_INTERVAL) return;
 
         const evt = new Event("tdStay", { bubbles: true });
         pi.node.dispatchEvent(evt);
 
-        reportItem.count += 1;
-        reportItem.time = now;
-        this.reportCache[pi.id] = reportItem;
+        stayItem.count += 1;
+        stayItem.time = now;
+        this.stayCache[pi.id] = stayItem;
     }
 }

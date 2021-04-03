@@ -4,9 +4,8 @@ export interface PageInfo {
     appid: string;
     pageid: string;
     node: Element;
-    timestamp: number;
+    latestVisibleTime: number;
     visbleState: boolean;
-    othersInfo: Record<string, string>;
 }
 
 class Page {
@@ -63,9 +62,8 @@ class Page {
             appid,
             pageid,
             node,
-            timestamp: Date.now(),
+            latestVisibleTime: Date.now(),
             visbleState: false,
-            othersInfo: {},
         };
         this.pageInfo.push(pi);
     }
@@ -74,6 +72,24 @@ class Page {
         if (this.pageVisible === false) return [];
 
         return this.pageInfo.filter((pi: PageInfo): boolean => pi.visbleState);
+    }
+
+    getPage(id: string | Element): PageInfo {
+        return this.pageInfo.find((pi: PageInfo): boolean => {
+            return typeof id === "string" ? pi.id === id : pi.node.isSameNode(id);
+        });
+    }
+
+    updatePageVisible(id: string | Element, visible: boolean): PageInfo {
+        const page = this.getPage(id);
+
+        if (!page) return;
+        // 最新可见时间
+        if (visible && page.visbleState === false) {
+            page.latestVisibleTime = Date.now();
+        }
+
+        page.visbleState = visible;
     }
 }
 

@@ -1,5 +1,6 @@
 import { BaseSubscriberDep } from "../subTypes";
 import config from "../../config";
+import pageInstance from "../../page";
 
 const OBSEVER_QUERY = ["[td-pageid]", "[td-itemid]", "[td-expose='1'][td-moduleid]"];
 
@@ -35,6 +36,8 @@ export default class Expose extends BaseSubscriberDep {
             // 元素的一半以上在视口内；或者元素的可视高度超过视口的一半以上
             if (io.isIntersecting || visbleHeight / rootHeight >= THRESHOLD) {
                 this.dispatchExpose(io.target);
+            } else {
+                this.updatePageVisible(io.target, false);
             }
         });
     }
@@ -47,7 +50,15 @@ export default class Expose extends BaseSubscriberDep {
         }, MIN_TIME);
     }
 
+    private updatePageVisible(target: Element, visible: boolean): void {
+        if (target.getAttribute("td-pageid")) {
+            pageInstance.updatePageVisible(target, visible);
+        }
+    }
+
     private dispatchExpose(target: Element): void {
+        this.updatePageVisible(target, true);
+
         const evt = new Event("tdExpose", {
             bubbles: true,
         });
