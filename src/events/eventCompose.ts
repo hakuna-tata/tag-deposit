@@ -1,5 +1,4 @@
-import pageInstance from "../page";
-import { ReportItem } from "../monitorTypes";
+import { ReportItem } from "../reportTypes";
 
 interface TdNodePath {
     el: Element;
@@ -103,7 +102,7 @@ export default class EventCompose {
             type: "",
             appEl: null,
             targetEl: null,
-            group_id: pageInstance.groupId,
+            group_id: document.body.getAttribute("td-groupid") || "",
             app_id: "",
             page_id: "",
             module_id: "",

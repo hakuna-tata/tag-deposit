@@ -1,7 +1,8 @@
 import EventCompose from "./eventCompose";
 import Click from "./click";
 import Expose from "./expose";
-import { ReportItem } from "../monitorTypes";
+import Stay from "./stay";
+import { ReportItem } from "../reportTypes";
 
 type EventType = Click | Expose;
 type EventsMap = { [K: string]: typeof EventCompose };
@@ -9,6 +10,7 @@ type EventsMap = { [K: string]: typeof EventCompose };
 const EVENTS_MAP: EventsMap = {
     click: Click,
     tdExpose: Expose,
+    tdStay: Stay,
 };
 
 const getEventInstance = (e: Event): EventCompose => {

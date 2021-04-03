@@ -1,4 +1,4 @@
-import { ReportItem, ACT_ID } from "../monitorTypes";
+import { ReportItem, ACT_ID } from "../reportTypes";
 import EventCompose, { ACTION_LEVEL } from "./eventCompose";
 
 export default class Expose extends EventCompose {

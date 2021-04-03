@@ -1,21 +1,30 @@
 import { Logger } from "./logger";
-interface PageInfo {
-    groupid: string;
+export interface PageInfo {
+    id: string;
     appid: string;
     pageid: string;
     node: Element;
     timestamp: number;
+    visbleState: boolean;
     othersInfo: Record<string, string>;
 }
 
 class Page {
-    private groupid = "";
+    private pageVisible = true;
     private pathname = "";
     private pageInfo: PageInfo[] = [];
 
-    init(): void {
-        this.groupid = document.body.getAttribute("td-groupid");
+    constructor() {
+        this.pageMinitor();
+    }
 
+    private pageMinitor(): void {
+        document.addEventListener("visibilitychange", () => {
+            this.pageVisible = !document.hidden;
+        });
+    }
+
+    init(): void {
         const nodes: NodeList = document.querySelectorAll("[td-pageid]");
 
         this.pathname = `${window.location.origin}${window.location.pathname}`;
@@ -45,30 +54,27 @@ class Page {
 
     addPageInfo({ appid, pageid, node }: { appid: string; pageid: string; node: Element }): void {
         if (appid === "") {
-            Logger.tips(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
+            Logger.debug(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
             return;
         }
 
         const pi: PageInfo = {
-            groupid: this.groupid,
+            id: String(Date.now() + Math.floor(Math.random() * 1000)),
             appid,
             pageid,
             node,
             timestamp: Date.now(),
+            visbleState: false,
             othersInfo: {},
         };
         this.pageInfo.push(pi);
     }
 
-    get groupId(): string {
-        return this.groupid;
-    }
+    getVisiblePages(): PageInfo[] {
+        if (this.pageVisible === false) return [];
 
-    get pageNum(): number {
-        return this.pageInfo.length;
+        return this.pageInfo.filter((pi: PageInfo): boolean => pi.visbleState);
     }
-
-    getPage(): void {}
 }
 
 export default new Page();

@@ -1,7 +1,10 @@
-import { ReportItem } from "./monitorTypes";
+import { ReportItem } from "./reportTypes";
+import { PageInfo } from "./page";
+
+type ItemType = ReportItem | PageInfo[] | Element;
 
 export const Logger = {
-    tips: (str: string, item?: ReportItem | Element): void => {
+    debug: (str: string, item?: ItemType): void => {
         console.log(`%c ${str}:`, "color: #c09", item);
     },
 };

@@ -9,9 +9,9 @@ type DepsMap = { [K: string]: typeof BaseSubscriberDep };
 
 const DEP_MAP: DepsMap = {
     click: Click,
-    customize: Customize,
     expose: Expose,
     stay: Stay,
+    customize: Customize,
 };
 
 export default class Subscriber extends Pipeline<Event> {

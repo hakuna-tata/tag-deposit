@@ -1,4 +1,5 @@
 import { BaseSubscriberDep } from "../subTypes";
+import config from "../../config";
 
 const OBSEVER_QUERY = ["[td-pageid]", "[td-itemid]", "[td-expose='1'][td-moduleid]"];
 
@@ -17,14 +18,13 @@ export default class Expose extends BaseSubscriberDep {
             threshold: THRESHOLD,
         });
 
-        window.requestAnimationFrame(() => {
+        if (config.domAutoMonitor === true) {
             this.mutationObserver = new MutationObserver(this.moHandler.bind(this));
-
             this.mutationObserver.observe(document.body, {
                 childList: true,
                 subtree: true,
             });
-        });
+        }
     }
 
     private ioHandler(entries: IntersectionObserverEntry[]): void {
@@ -41,7 +41,10 @@ export default class Expose extends BaseSubscriberDep {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private moHandler(MutationRecord: MutationRecord[]): void {
-        this.addObserver(OBSEVER_QUERY);
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            this.addObserver(OBSEVER_QUERY);
+        }, MIN_TIME);
     }
 
     private dispatchExpose(target: Element): void {
@@ -53,17 +56,14 @@ export default class Expose extends BaseSubscriberDep {
     }
 
     private addObserver(query: string[]): void {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            query.forEach((attr) => {
-                document.querySelectorAll(attr).forEach((el) => {
-                    if (!this.observerList.includes(el)) {
-                        this.observerList.push(el);
-                        this.intersectionObserver.observe(el);
-                    }
-                });
+        query.forEach((attr) => {
+            document.querySelectorAll(attr).forEach((el) => {
+                if (!this.observerList.includes(el)) {
+                    this.observerList.push(el);
+                    this.intersectionObserver.observe(el);
+                }
             });
-        }, MIN_TIME);
+        });
     }
 
     publish(): void {
