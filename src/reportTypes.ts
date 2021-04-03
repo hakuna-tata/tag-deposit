@@ -1,3 +1,14 @@
+export interface PageInfo {
+    id: string;
+    appid: string;
+    pageid: string;
+    node: Element;
+    latestVisibleTime: number;
+    visbleState: boolean;
+    count?: number;
+    time?: number;
+}
+
 export interface ReportItem {
     level: number;
     type: string;
@@ -8,6 +19,7 @@ export interface ReportItem {
     page_id?: string;
     module_id?: string;
     item_id?: string;
+    moreInfo?: Partial<PageInfo>;
 }
 
 export enum ACT_TYPE {

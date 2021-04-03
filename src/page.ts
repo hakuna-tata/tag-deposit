@@ -1,12 +1,5 @@
+import { PageInfo } from "./reportTypes";
 import { Logger } from "./logger";
-export interface PageInfo {
-    id: string;
-    appid: string;
-    pageid: string;
-    node: Element;
-    latestVisibleTime: number;
-    visbleState: boolean;
-}
 
 class Page {
     private pageVisible = true;

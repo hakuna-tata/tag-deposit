@@ -1,5 +1,4 @@
-import { ReportItem } from "./reportTypes";
-import { PageInfo } from "./page";
+import { ReportItem, PageInfo } from "./reportTypes";
 
 type ItemType = ReportItem | PageInfo[] | Element;
 
