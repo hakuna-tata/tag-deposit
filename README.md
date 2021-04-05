@@ -22,7 +22,8 @@ Body >= Page容器 > Module容器 > Item
 |  属性   | 示例  | 说明 |
 |  :----  | :----  | :---- |
 | td-groupid  | td-groupid="front-end" | 1、拓展信息|
-| td-offAM | td-offAM="1" | 1、是否自动检测DOM变更，默认开启 |
+| td-offAM | td-offAM="1" | 1、是否关闭自动检测DOM变更，默认开启 |
+| td-offSM | td-offSM="1" | 1、是否关闭页面停留检测，默认开启 |
 | td-appid | td-appid="app_1" | 1、链路统计方式为距离 pageid 最近且拥有 appid 的当前或上级节点 |
 | td-pageid | td-pageid="page_1" | 1、链路统计方式以 pageid 作为隔离界限<br>2、统计 pageid 子节点上的 moduleid 和 itemid<br>3、忽略 pageid 子节点上的 pageid 和 appid |
 | td-moduleid | td-moduleid="module_1" | 1、Module 容器 |
