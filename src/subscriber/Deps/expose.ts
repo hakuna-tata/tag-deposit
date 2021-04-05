@@ -19,7 +19,7 @@ export default class Expose extends BaseSubscriberDep {
             threshold: THRESHOLD,
         });
 
-        if (config.domAutoMonitor === true) {
+        if (config.offAutoMonitor === false) {
             this.mutationObserver = new MutationObserver(this.moHandler.bind(this));
             this.mutationObserver.observe(document.body, {
                 childList: true,

@@ -1,19 +1,21 @@
 export interface PageConfig {
+    groupid: string;
     /**
-     * 是否自动检测DOM变更
+     * 关闭自动检测DOM变更
      */
-    domAutoMonitor: boolean;
+    offAutoMonitor: boolean;
 
     /**
-     * 是否开启页面停留检测
+     * 关闭页面停留检测
      */
-    stayAutoMonitor: boolean;
+    offStayMonitor: boolean;
 }
 
 const buildConfig = (): PageConfig => {
     return {
-        domAutoMonitor: document.body.getAttribute("td-domAM") !== "1",
-        stayAutoMonitor: document.body.getAttribute("td-stayAM") !== "1",
+        groupid: document.body.getAttribute("td-groupid") || "",
+        offAutoMonitor: document.body.getAttribute("td-offAM") === "1",
+        offStayMonitor: document.body.getAttribute("td-offSM") === "1",
     };
 };
 

@@ -1,4 +1,5 @@
 import { ReportItem } from "../reportTypes";
+import config from "../config";
 
 interface TdNodePath {
     el: Element;
@@ -102,7 +103,7 @@ export default class EventCompose {
             type: "",
             appEl: null,
             targetEl: null,
-            group_id: document.body.getAttribute("td-groupid") || "",
+            group_id: config.groupid,
             app_id: "",
             page_id: "",
             module_id: "",

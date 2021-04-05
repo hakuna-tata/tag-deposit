@@ -19,7 +19,7 @@ export default class Stay extends BaseSubscriberDep {
             this.emit("report", e);
         });
 
-        if (config.stayAutoMonitor === true) {
+        if (config.offStayMonitor === false) {
             this.calcStay();
         }
     }
