@@ -1,5 +1,4 @@
 import { PageInfo } from "./reportTypes";
-import { Logger } from "./logger";
 
 class Page {
     private pageVisible = true;
@@ -46,7 +45,6 @@ class Page {
 
     addPageInfo({ appid, pageid, node }: { appid: string; pageid: string; node: Element }): void {
         if (appid === "") {
-            Logger.debug(`warn => td-pageid: ${pageid} 没有对应的 td-appid`);
             return;
         }
 

@@ -11,8 +11,8 @@
         }
     </style>
 </head>
-<body td-groupid="front-end">
-    <div td-appid="app-1" id="root" style="height: 100%;">
+<body td-groupid="front-end" td-offSM="1">
+    <!-- <div td-appid="app-1" id="root" style="height: 100%;">
         <div td-pageid="page-1" style="height: 150px; display: flex; justify-content: space-around; align-items: center;">
             <div td-moduleid="module-1">
                 <button td-itemid="item-1">app1-page1-md1-item1</button>
@@ -31,8 +31,20 @@
             <div td-pageid="page-2" style="width: 160px; height: 100%; background: blueviolet;">app1-page1-page2</div>
         </div>
         <div td-pageid="page-3" style="height: 100px; background: chartreuse; margin-top: 30px">app1-page3</div>
+    </div> -->
+    <!-- <iframe src="https://cn.vuejs.org/" td-appid="app-3" td-pageid="page-1" width="200px" height="200px" style="position: fixed; top: 400px;"></iframe> -->
+    <div id="root" style="height: 100%;">
+        <div td-pageid="page-1" style="width: 160px; height: 100%; background: blueviolet;">
+            app1-page1-page2
+            <div td-appid="app-2" td-pageid="page-2">
+                <div td-appid="app-3">
+                <!-- <div td-moduleid="module-2" td-expose="1"> -->
+                    <button td-itemid="item-1">app1-app2-module1-item1</button>
+                <!-- </div> -->
+                </div>
+            </div>
+        </div>
     </div>
-    <iframe src="https://cn.vuejs.org/" td-appid="app-3" td-pageid="page-1" width="200px" height="200px" style="position: fixed; top: 400px;"></iframe>
     <script src="index.js"></script>
 </body>
 </html>

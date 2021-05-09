@@ -13,7 +13,7 @@ Body >= Page容器 > Module容器 > Item
 |  标注DOM   | 说明  | 支持属性 |
 |  :----  | :----  | :---- |
 | Body  | document.body 上标注的属性 | 1、td-groupid 可选<br>2、td-domAM 可选<br>3、td-stayAM 可选 |
-| Pgae  | 以 Page 容器为隔离，Page 容器之间允许相互嵌套 | 1、td-appid 必选<br>2、td-pageid 必选 |
+| Page  | 以 Page 容器为隔离标准，Page 容器之间允许相互嵌套 | 1、td-appid 必选<br>2、td-pageid 必选 |
 | Module| Module 容器必须属于 Page 容器<br>不能嵌套更高维度的容器且 Module 容器之间不允许嵌套 | 1、td-moduleid 必选 <br>2、td-expose 可选 |
 | Item  | Item 必须属于 Module 容器<br>交互型行为按钮必须为 Item<br>不能嵌套更高维度的容器且 Item 之间不允许嵌套 | 1、td-itemid 必选 |
 <br>

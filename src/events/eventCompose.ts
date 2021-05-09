@@ -1,4 +1,5 @@
 import { ReportItem } from "../reportTypes";
+import { Logger } from "../logger";
 import config from "../config";
 
 interface TdNodePath {
@@ -89,6 +90,11 @@ export default class EventCompose {
         });
 
         const nodes: TdNodePath[] = tdNodePath.slice(0, index + 1);
+
+        if (!nodes.length) {
+            const { attrs } = tdNodePath[tdNodePath.length - 1];
+            Logger.warn(`td-pageid: ${attrs.pageid} 没有对应的 td-${fixId}`);
+        }
 
         return nodes;
     }
