@@ -2,7 +2,6 @@ import { PageInfo } from "./reportTypes";
 
 class Page {
     private pageVisible = true;
-    private pathname = "";
     private pageInfo: PageInfo[] = [];
 
     constructor() {
@@ -18,13 +17,11 @@ class Page {
     init(): void {
         const nodes: NodeList = document.querySelectorAll("[td-pageid]");
 
-        this.pathname = `${window.location.origin}${window.location.pathname}`;
-
         nodes.forEach((node: Element): void => {
             const pageid: string = node.getAttribute("td-pageid");
             this.addPageInfo({
                 appid: this.getAppId(node),
-                pageid: pageid || this.pathname,
+                pageid,
                 node,
             });
         });

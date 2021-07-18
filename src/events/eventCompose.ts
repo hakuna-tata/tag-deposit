@@ -98,7 +98,9 @@ export default class EventCompose {
                 return Object.keys(targetInfo.attrs).includes(attr);
             });
 
-            Logger.warn(`td-${curId}: ${targetInfo.attrs[curId]} 没有对应的 td-${traceId}`);
+            if (curId !== VALID_VTNODE[0]) {
+                Logger.warn(`td-${curId}: ${targetInfo.attrs[curId]} 没有对应的 td-${traceId}`);
+            }
 
             return [];
         }
@@ -157,7 +159,6 @@ export default class EventCompose {
 
                 reportItem.level = ACTION_LEVEL.ITEM;
             } else {
-                // TODO (detail info)
                 Logger.warn("禁止 itemid 以及 moduleid 自身嵌套，或者互相嵌套");
             }
         } else if (pageNodePath.length > 3) {

@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
     mode: "development",
     devtool: "cheap-module-eval-source-map",
-    entry: "./src/index.ts",
+    entry: path.resolve(__dirname, "../src/index.ts"),
     output: {
         path: path.resolve(__dirname, "../example"),
         filename: "index.js",
@@ -22,7 +22,7 @@ module.exports = {
         ],
     },
     devServer: {
-        contentBase: [path.join(__dirname, "../example")],
+        contentBase: [path.resolve(__dirname, "../example")],
         host: "localhost",
         port: "8000",
         compress: true,
